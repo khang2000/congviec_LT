@@ -38,8 +38,8 @@ function App() {
     passportNumber: "",
     bankAccountNumber: "",
   });
-  const formData = new FormData();
-  formData.append("file", image);
+  // const formData = new FormData();
+  // formData.append("file", image);
   // const Upload = (e) => {
   //   e.preventDefault();
 
@@ -60,14 +60,7 @@ function App() {
   const Upload = (e) => {
     e.preventDefault();
 
-    uploadImage(
-      image,
-      (data) => {
-        console.log(data);
-        alert(data.message);
-      },
-      (error) => console.log(error.message)
-    );
+    uploadImage(image);
   };
   const getData = (e) => {
     const { value, name } = e.target;
@@ -175,14 +168,7 @@ function App() {
     newData.bankAccountNumber = inpVal.bankAccountNumber;
     newData.idetityCardNumber = inpVal.idetityCardNumber;
     // /////
-    addCustomer(
-      newData,
-      (data) => {
-        console.log(data);
-        alert(data.message);
-      },
-      (error) => console.log(error.message)
-    );
+    addCustomer(newData);
 
     // fetch("https://g.lifetek.vn:220/api/customers", {
     //   method: "POST",
