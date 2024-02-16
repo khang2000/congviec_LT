@@ -23,6 +23,12 @@
   width: 300px;
   border-radius: 50%;
 }
+.right-child {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+}
 .ttkh {
   /* font-size: larger; */
   font-weight: 600;
@@ -39,4 +45,5 @@ button {
 }
 .btn-upload {
   margin-top: 10px;
+  width: 50%;
 }
