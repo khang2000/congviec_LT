@@ -1,4 +1,9 @@
-export const newData = {
+const _ = require("lodash");
+const apiUrl = "https://g.lifetek.vn:203/api/files/single";
+const customerApiUrl = "https://g.lifetek.vn:220/api/customers";
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjI2NjBhYzFjOGM4MTMwNmYxODQ5NTIwIiwiaWF0IjoxNzA2NTgzMjI5LCJleHAiOjE3MTg1ODMyMjl9.pZS9oGDy3ftrN9-fWWP8JVnG7cHfibHOKtw3UgaFMDI";
+const newData = {
   type: 1,
   kanbanStatus: "62c63d566b24ef5278427ef0",
   others: {},
@@ -66,3 +71,6 @@ export const newData = {
     },
   },
 };
+const deepCloneNewData = _.cloneDeep(newData);
+
+export { apiUrl, customerApiUrl, token, deepCloneNewData };

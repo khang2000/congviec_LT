@@ -2,14 +2,10 @@ import "./App.css";
 import user_avatar from "../src/images/noinfor.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faPen } from "@fortawesome/free-solid-svg-icons";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { addCustomer, uploadImage } from "./app.service";
-import { newData } from "./constant";
+import { deepCloneNewData, customerApiUrl, apiUrl, token } from "./constant";
 function App() {
-  const apiUrl = "https://g.lifetek.vn:203/api/files/single";
-  const customerApiUrl = "https://g.lifetek.vn:220/api/customers";
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjI2NjBhYzFjOGM4MTMwNmYxODQ5NTIwIiwiaWF0IjoxNzA2NTgzMjI5LCJleHAiOjE3MTg1ODMyMjl9.pZS9oGDy3ftrN9-fWWP8JVnG7cHfibHOKtw3UgaFMDI";
   const [image, setImage] = useState();
   const inputRef = useRef(null);
 
@@ -18,10 +14,7 @@ function App() {
   };
 
   const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    console.log(file);
     setImage(event.target.files[0]);
-    console.log(URL.createObjectURL(image));
   };
   const [inpVal, setInpVal] = useState({
     name: "",
@@ -51,46 +44,34 @@ function App() {
   const addData = async (e) => {
     e.preventDefault();
 
-    newData.name = inpVal.name;
-    newData.nickname = inpVal.nickname;
-    newData.phoneNumber = inpVal.phoneNumber;
-    newData.birthDay = inpVal.birthDay;
-    newData.lastName = inpVal.lastName;
-    newData.address = inpVal.address;
-    newData.gender = inpVal.gender;
-    newData.provincial = inpVal.provincial;
-    newData.website = inpVal.website;
-    newData.code = inpVal.code;
-    newData.passportNumber = inpVal.passportNumber;
-    newData.bankAccountNumber = inpVal.bankAccountNumber;
-    newData.idetityCardNumber = inpVal.idetityCardNumber;
-    // newData.avatarURL = URL.createObjectURL(image);
-    // /////
-    ///CALL API USER
-    try {
-      const dataUser = await addCustomer(customerApiUrl, token, newData);
-      console.log(dataUser);
-      alert(dataUser.message);
-    } catch (error) {
-      console.error(error);
-    }
-    // addCustomer(customerApiUrl, token, newData);
-    /////////
-    /// CALL API IMAGE
+    deepCloneNewData.name = inpVal.name;
+    deepCloneNewData.nickname = inpVal.nickname;
+    deepCloneNewData.phoneNumber = inpVal.phoneNumber;
+    deepCloneNewData.birthDay = inpVal.birthDay;
+    deepCloneNewData.lastName = inpVal.lastName;
+    deepCloneNewData.address = inpVal.address;
+    deepCloneNewData.gender = inpVal.gender;
+    deepCloneNewData.provincial = inpVal.provincial;
+    deepCloneNewData.website = inpVal.website;
+    deepCloneNewData.code = inpVal.code;
+    deepCloneNewData.passportNumber = inpVal.passportNumber;
+    deepCloneNewData.bankAccountNumber = inpVal.bankAccountNumber;
+    deepCloneNewData.idetityCardNumber = inpVal.idetityCardNumber;
+    //CALL API
     try {
       const data = await uploadImage(apiUrl, image);
-      console.log(data);
       if (!data) {
-        newData.avatar = "";
-        newData.avatarURL = "";
+        deepCloneNewData.avatar = "";
+        deepCloneNewData.avatarURL = "";
       } else {
-        newData.avatar = data.url;
-        newData.avatarURL = URL.createObjectURL(image);
-        console.log(newData);
+        deepCloneNewData.avatar = data.url;
+        deepCloneNewData.avatarURL = URL.createObjectURL(image);
       }
     } catch (error) {
       console.error(error);
     }
+    /////
+    addCustomer(customerApiUrl, token, deepCloneNewData);
   };
   return (
     <div className="body-ct">
