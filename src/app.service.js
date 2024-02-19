@@ -31,5 +31,5 @@ const addCustomer = async (customerApiUrl, token, data) => {
     throw error;
   }
 };
-
+////////////
 export { uploadImage, addCustomer };
