@@ -28,7 +28,7 @@ const addCustomer = async (customerApiUrl, token, data) => {
     const responseData = await response.json();
     return responseData;
   } catch (error) {
-    alert(error.message);
+    throw error;
   }
 };
 

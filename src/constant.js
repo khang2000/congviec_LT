@@ -1,4 +1,3 @@
-const _ = require("lodash");
 const apiUrl = "https://g.lifetek.vn:203/api/files/single";
 const customerApiUrl = "https://g.lifetek.vn:220/api/customers";
 const token =
@@ -71,6 +70,6 @@ const newData = {
     },
   },
 };
-const deepCloneNewData = _.cloneDeep(newData);
+// const deepCloneNewData = _.cloneDeep(newData);
 
-export { apiUrl, customerApiUrl, token, deepCloneNewData };
+export { apiUrl, customerApiUrl, token, newData };

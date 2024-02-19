@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faPen } from "@fortawesome/free-solid-svg-icons";
 import React, { useState, useRef } from "react";
 import { addCustomer, uploadImage } from "./app.service";
-import { deepCloneNewData, customerApiUrl, apiUrl, token } from "./constant";
+import { customerApiUrl, apiUrl, token, newData } from "./constant";
 function App() {
   const [image, setImage] = useState();
   const inputRef = useRef(null);
@@ -41,6 +41,12 @@ function App() {
       };
     });
   };
+
+  function deepClone(obj) {
+    return JSON.parse(JSON.stringify(obj));
+  }
+  let deepCloneNewData = deepClone(newData);
+
   const addData = async (e) => {
     e.preventDefault();
 
@@ -71,7 +77,17 @@ function App() {
       console.error(error);
     }
     /////
-    addCustomer(customerApiUrl, token, deepCloneNewData);
+    try {
+      const response = await addCustomer(
+        customerApiUrl,
+        token,
+        deepCloneNewData
+      );
+      console.log("API Response:", response);
+    } catch (error) {
+      console.error("Error calling addCustomer:", error);
+    }
+    // addCustomer(customerApiUrl, token, deepCloneNewData);
   };
   return (
     <div className="body-ct">
