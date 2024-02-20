@@ -36,6 +36,15 @@
 i {
   color: grey;
 }
+span {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 5px;
+  display: block;
+}
+input:invalid ~ span {
+  display: block;
+}
 button {
   background-color: blueviolet;
   border-radius: 5px;

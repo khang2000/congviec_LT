@@ -31,5 +31,9 @@ const addCustomer = async (customerApiUrl, token, data) => {
     throw error;
   }
 };
+
+function deepClone(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
 ////////////
-export { uploadImage, addCustomer };
+export { uploadImage, addCustomer, deepClone };
