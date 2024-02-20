@@ -65,12 +65,10 @@ const MyForm = () => {
       const value = inpVal[fieldName];
       const errorMessage = validateField(fieldName, value);
       newErrors[fieldName] = errorMessage;
-
       if (errorMessage) {
         valid = false;
       }
     });
-
     setErrors(newErrors);
     return valid;
   };
@@ -132,8 +130,8 @@ const MyForm = () => {
             MÃ KHÁCH HÀNG
           </label>
           <input
+            className={errors.code ? "form-control input" : "form-control"}
             type="text"
-            className="form-control"
             id="code"
             name="code"
             onBlur={handleBlur}
@@ -148,7 +146,7 @@ const MyForm = () => {
           </label>
           <input
             type="text"
-            className="form-control"
+            className={errors.name ? "form-control input" : "form-control"}
             id="name"
             name="name"
             onBlur={handleBlur}
@@ -162,7 +160,7 @@ const MyForm = () => {
           </label>
           <input
             type="text"
-            className="form-control"
+            className={errors.lastName ? "form-control input" : "form-control"}
             id="lastName"
             name="lastName"
             onBlur={handleBlur}
@@ -176,7 +174,7 @@ const MyForm = () => {
           </label>
           <input
             type="text"
-            className="form-control"
+            className={errors.nickname ? "form-control input" : "form-control"}
             id="nickname"
             name="nickname"
             onBlur={handleBlur}
@@ -190,7 +188,9 @@ const MyForm = () => {
           </label>
           <input
             type="text"
-            className="form-control"
+            className={
+              errors.phoneNumber ? "form-control input" : "form-control"
+            }
             id="phoneNumber"
             name="phoneNumber"
             onBlur={handleBlur}
@@ -204,7 +204,7 @@ const MyForm = () => {
           </label>
           <input
             type="text"
-            className="form-control"
+            className={errors.address ? "form-control input" : "form-control"}
             id="address"
             name="address"
             onBlur={handleBlur}
@@ -232,7 +232,7 @@ const MyForm = () => {
           </label>
           <input
             type="date"
-            className="form-control"
+            className={errors.birthDay ? "form-control input" : "form-control"}
             id="birthDay"
             name="birthDay"
             onBlur={handleBlur}
@@ -245,8 +245,10 @@ const MyForm = () => {
             KHU VỰC
           </label>
           <input
-            type="email"
-            className="form-control"
+            type="text"
+            className={
+              errors.provincial ? "form-control input" : "form-control"
+            }
             id="provincial"
             name="provincial"
             onBlur={handleBlur}
@@ -259,8 +261,8 @@ const MyForm = () => {
             WEBSITE
           </label>
           <input
-            type="email"
-            className="form-control"
+            type="text"
+            className={errors.website ? "form-control input" : "form-control"}
             id="website"
             name="website"
             onBlur={handleBlur}
@@ -273,8 +275,10 @@ const MyForm = () => {
             CMND
           </label>
           <input
-            type="email"
-            className="form-control"
+            type="text"
+            className={
+              errors.idetityCardNumber ? "form-control input" : "form-control"
+            }
             id="idetityCardNumber"
             name="idetityCardNumber"
             onBlur={handleBlur}
@@ -288,7 +292,9 @@ const MyForm = () => {
           </label>
           <input
             type="text"
-            className="form-control"
+            className={
+              errors.passportNumber ? "form-control input" : "form-control"
+            }
             id="passportNumber"
             name="passportNumber"
             onBlur={handleBlur}
@@ -302,7 +308,9 @@ const MyForm = () => {
           </label>
           <input
             type="text"
-            className="form-control"
+            className={
+              errors.bankAccountNumber ? "form-control input" : "form-control"
+            }
             id="bankAccountNumber"
             name="bankAccountNumber"
             onBlur={handleBlur}

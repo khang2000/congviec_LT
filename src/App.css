@@ -42,9 +42,9 @@ span {
   margin-top: 5px;
   display: block;
 }
-input:invalid ~ span {
+/* input:invalid ~ span {
   display: block;
-}
+} */
 button {
   background-color: blueviolet;
   border-radius: 5px;
@@ -55,4 +55,8 @@ button {
 .btn-upload {
   margin-top: 10px;
   width: 50%;
+}
+
+.input {
+  border: solid 1px red;
 }
