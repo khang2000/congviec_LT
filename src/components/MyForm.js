@@ -25,7 +25,6 @@ const MyForm = () => {
   const [errors, setErrors] = useState({});
 
   const inputRef = useRef(null);
-  const deepCloneNewData = deepClone(newData);
 
   const handleImageClick = () => {
     inputRef.current.click();
@@ -75,6 +74,8 @@ const MyForm = () => {
   const addData = async (e) => {
     e.preventDefault();
 
+    const deepCloneNewData = deepClone(newData);
+
     deepCloneNewData.name = inpVal.name;
     deepCloneNewData.nickname = inpVal.nickname;
     deepCloneNewData.phoneNumber = inpVal.phoneNumber;
@@ -89,31 +90,34 @@ const MyForm = () => {
     deepCloneNewData.bankAccountNumber = inpVal.bankAccountNumber;
     deepCloneNewData.idetityCardNumber = inpVal.idetityCardNumber;
 
-    validateForm();
-
-    //CALL API
-    try {
-      const data = await uploadImage(apiUrl, image);
-      if (!data) {
-        deepCloneNewData.avatar = "";
-        deepCloneNewData.avatarURL = "";
-      } else {
-        deepCloneNewData.avatar = data.url;
-        deepCloneNewData.avatarURL = URL.createObjectURL(image);
+    if (validateForm()) {
+      // Gửi dữ liệu form nếu validation thành công
+      //UPLOAD IMAGE
+      try {
+        const data = await uploadImage(apiUrl, image);
+        if (!data) {
+          deepCloneNewData.avatar = "";
+          deepCloneNewData.avatarURL = "";
+        } else {
+          deepCloneNewData.avatar = data.url;
+          deepCloneNewData.avatarURL = URL.createObjectURL(image);
+        }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
-    }
-    /////
-    try {
-      const response = await addCustomer(
-        customerApiUrl,
-        token,
-        deepCloneNewData
-      );
-      console.log("API Response:", response);
-    } catch (error) {
-      console.error("Error calling addCustomer:", error);
+      //UPLOAD INFORMATION
+      try {
+        const response = await addCustomer(
+          customerApiUrl,
+          token,
+          deepCloneNewData
+        );
+        console.log("API Response:", response);
+      } catch (error) {
+        console.error("Error calling addCustomer:", error);
+      }
+    } else {
+      alert("Vui lòng nhập đầy đủ thông tin và hợp lệ ");
     }
   };
   return (
