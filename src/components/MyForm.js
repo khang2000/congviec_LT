@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faPen } from "@fortawesome/free-solid-svg-icons";
 import { addCustomer, uploadImage, deepClone } from "../app.service";
 import { customerApiUrl, apiUrl, token, newData } from "../constant";
-import { validateField } from "../validate";
+import { validateField, validateForm } from "../validate";
 const MyForm = () => {
   const [image, setImage] = useState();
   const [inpVal, setInpVal] = useState({
@@ -56,42 +56,27 @@ const MyForm = () => {
     });
   };
 
-  const validateForm = () => {
-    let valid = true;
-    const newErrors = {};
-
-    Object.keys(inpVal).forEach((fieldName) => {
-      const value = inpVal[fieldName];
-      const errorMessage = validateField(fieldName, value);
-      newErrors[fieldName] = errorMessage;
-      if (errorMessage) {
-        valid = false;
-      }
-    });
-    setErrors(newErrors);
-    return valid;
-  };
   const addData = async (e) => {
     e.preventDefault();
 
-    const deepCloneNewData = deepClone(newData);
+    const { valid, errors } = validateForm(inpVal);
+    if (valid) {
+      const deepCloneNewData = deepClone(newData);
 
-    deepCloneNewData.name = inpVal.name;
-    deepCloneNewData.nickname = inpVal.nickname;
-    deepCloneNewData.phoneNumber = inpVal.phoneNumber;
-    deepCloneNewData.birthDay = inpVal.birthDay;
-    deepCloneNewData.lastName = inpVal.lastName;
-    deepCloneNewData.address = inpVal.address;
-    deepCloneNewData.gender = inpVal.gender;
-    deepCloneNewData.provincial = inpVal.provincial;
-    deepCloneNewData.website = inpVal.website;
-    deepCloneNewData.code = inpVal.code;
-    deepCloneNewData.passportNumber = inpVal.passportNumber;
-    deepCloneNewData.bankAccountNumber = inpVal.bankAccountNumber;
-    deepCloneNewData.idetityCardNumber = inpVal.idetityCardNumber;
+      deepCloneNewData.name = inpVal.name;
+      deepCloneNewData.nickname = inpVal.nickname;
+      deepCloneNewData.phoneNumber = inpVal.phoneNumber;
+      deepCloneNewData.birthDay = inpVal.birthDay;
+      deepCloneNewData.lastName = inpVal.lastName;
+      deepCloneNewData.address = inpVal.address;
+      deepCloneNewData.gender = inpVal.gender;
+      deepCloneNewData.provincial = inpVal.provincial;
+      deepCloneNewData.website = inpVal.website;
+      deepCloneNewData.code = inpVal.code;
+      deepCloneNewData.passportNumber = inpVal.passportNumber;
+      deepCloneNewData.bankAccountNumber = inpVal.bankAccountNumber;
+      deepCloneNewData.idetityCardNumber = inpVal.idetityCardNumber;
 
-    if (validateForm()) {
-      // Gửi dữ liệu form nếu validation thành công
       //UPLOAD IMAGE
       try {
         const data = await uploadImage(apiUrl, image);
@@ -117,9 +102,10 @@ const MyForm = () => {
         console.error("Error calling addCustomer:", error);
       }
     } else {
-      alert("Vui lòng nhập đầy đủ thông tin và hợp lệ ");
+      setErrors(errors);
     }
   };
+
   return (
     <div className="body-ct">
       <form className="left">

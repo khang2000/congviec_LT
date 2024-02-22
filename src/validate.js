@@ -53,5 +53,20 @@ const validateField = (fieldName, value) => {
       return "";
   }
 };
+const validateForm = (inpVal) => {
+  let valid = true;
+  const newErrors = {};
 
-export { validateField };
+  Object.keys(inpVal).forEach((fieldName) => {
+    const value = inpVal[fieldName];
+    const errorMessage = validateField(fieldName, value);
+    newErrors[fieldName] = errorMessage;
+    if (errorMessage) {
+      valid = false;
+    }
+  });
+
+  return { valid, errors: newErrors };
+};
+
+export { validateField, validateForm };
