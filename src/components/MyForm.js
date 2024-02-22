@@ -41,7 +41,7 @@ const MyForm = () => {
       [name]: errorMessage,
     });
   };
-  const getData = (e) => {
+  const onChangeInput = (e) => {
     const { value, name } = e.target;
     setInpVal(() => {
       return {
@@ -125,7 +125,7 @@ const MyForm = () => {
             id="code"
             name="code"
             onBlur={handleBlur}
-            onChange={getData}
+            onChange={onChangeInput}
             placeholder="KH12345678"
           />
           {errors.code && <span>{errors.code}</span>}
@@ -140,7 +140,7 @@ const MyForm = () => {
             id="name"
             name="name"
             onBlur={handleBlur}
-            onChange={getData}
+            onChange={onChangeInput}
           />
           {errors.name && <span>{errors.name}</span>}
         </div>
@@ -154,7 +154,7 @@ const MyForm = () => {
             id="lastName"
             name="lastName"
             onBlur={handleBlur}
-            onChange={getData}
+            onChange={onChangeInput}
           />
           {errors.lastName && <span>{errors.lastName}</span>}
         </div>
@@ -168,7 +168,7 @@ const MyForm = () => {
             id="nickname"
             name="nickname"
             onBlur={handleBlur}
-            onChange={getData}
+            onChange={onChangeInput}
           />
           {errors.nickname && <span>{errors.nickname}</span>}
         </div>
@@ -184,7 +184,7 @@ const MyForm = () => {
             id="phoneNumber"
             name="phoneNumber"
             onBlur={handleBlur}
-            onChange={getData}
+            onChange={onChangeInput}
           />
           {errors.phoneNumber && <span>{errors.phoneNumber}</span>}
         </div>{" "}
@@ -198,7 +198,7 @@ const MyForm = () => {
             id="address"
             name="address"
             onBlur={handleBlur}
-            onChange={getData}
+            onChange={onChangeInput}
           />
           {errors.address && <span>{errors.address}</span>}
         </div>{" "}
@@ -210,7 +210,7 @@ const MyForm = () => {
             className="form-control form-select"
             name="gender"
             id="gender"
-            onChange={getData}
+            onChange={onChangeInput}
           >
             <option value="Nam">Nam</option>
             <option value="Nữ">Nữ</option>
@@ -226,7 +226,7 @@ const MyForm = () => {
             id="birthDay"
             name="birthDay"
             onBlur={handleBlur}
-            onChange={getData}
+            onChange={onChangeInput}
           />
           {errors.birthDay && <span>{errors.birthDay}</span>}
         </div>{" "}
@@ -242,7 +242,7 @@ const MyForm = () => {
             id="provincial"
             name="provincial"
             onBlur={handleBlur}
-            onChange={getData}
+            onChange={onChangeInput}
           />
           {errors.provincial && <span>{errors.provincial}</span>}
         </div>
@@ -256,7 +256,7 @@ const MyForm = () => {
             id="website"
             name="website"
             onBlur={handleBlur}
-            onChange={getData}
+            onChange={onChangeInput}
           />
           {errors.website && <span>{errors.website}</span>}
         </div>
@@ -272,7 +272,7 @@ const MyForm = () => {
             id="idetityCardNumber"
             name="idetityCardNumber"
             onBlur={handleBlur}
-            onChange={getData}
+            onChange={onChangeInput}
           />
           {errors.idetityCardNumber && <span>{errors.idetityCardNumber}</span>}
         </div>
@@ -288,7 +288,7 @@ const MyForm = () => {
             id="passportNumber"
             name="passportNumber"
             onBlur={handleBlur}
-            onChange={getData}
+            onChange={onChangeInput}
           />
           {errors.passportNumber && <span>{errors.passportNumber}</span>}
         </div>
@@ -304,7 +304,7 @@ const MyForm = () => {
             id="bankAccountNumber"
             name="bankAccountNumber"
             onBlur={handleBlur}
-            onChange={getData}
+            onChange={onChangeInput}
           />
           {errors.bankAccountNumber && <span>{errors.bankAccountNumber}</span>}
         </div>
