@@ -78,17 +78,19 @@ const MyForm = () => {
       deepCloneNewData.idetityCardNumber = inpVal.idetityCardNumber;
 
       //UPLOAD IMAGE
-      try {
-        const data = await uploadImage(apiUrl, image);
-        if (!data) {
-          deepCloneNewData.avatar = "";
-          deepCloneNewData.avatarURL = "";
-        } else {
-          deepCloneNewData.avatar = data.url;
-          deepCloneNewData.avatarURL = URL.createObjectURL(image);
+      if (image) {
+        try {
+          const data = await uploadImage(apiUrl, image);
+          if (!data) {
+            deepCloneNewData.avatar = "";
+            deepCloneNewData.avatarURL = "";
+          } else {
+            deepCloneNewData.avatar = data.url;
+            deepCloneNewData.avatarURL = URL.createObjectURL(image);
+          }
+        } catch (error) {
+          console.error(error);
         }
-      } catch (error) {
-        console.error(error);
       }
       //UPLOAD INFORMATION
       try {
