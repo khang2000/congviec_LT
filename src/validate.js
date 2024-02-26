@@ -1,3 +1,9 @@
+/**
+ * Hàm kiểm tra và trả về thông báo lỗi nếu giá trị của một trường không hợp lệ.
+ * @param {string} fieldName - Tên trường cần kiểm tra.
+ * @param {string} value - Giá trị của trường cần kiểm tra.
+ * @returns {string} - Thông báo lỗi nếu có, ngược lại trả về chuỗi rỗng.
+ */
 const validateField = (fieldName, value) => {
   switch (fieldName) {
     case "name":
@@ -53,6 +59,12 @@ const validateField = (fieldName, value) => {
       return "";
   }
 };
+
+/**
+ * Validate a form based on the provided input values.
+ * @param {Object} inpVal - Các giá trị đầu vào cần được xác thực
+ * @returns {Object} - trả về một object chứa lỗi xác thực cho từng trường
+ */
 const validateForm = (inpVal) => {
   let valid = true;
   const newErrors = {};

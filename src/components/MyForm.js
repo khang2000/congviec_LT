@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useRef } from "react";
 import user_avatar from "../images/noinfor.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,6 +8,7 @@ import { customerApiUrl, apiUrl, token, newData } from "../constant";
 import { validateField, validateForm } from "../validate";
 const MyForm = () => {
   const [image, setImage] = useState();
+
   const [inpVal, setInpVal] = useState({
     name: "",
     nickname: "",
@@ -81,16 +83,15 @@ const MyForm = () => {
       if (image) {
         try {
           const data = await uploadImage(apiUrl, image);
-          if (!data) {
-            deepCloneNewData.avatar = "";
-            deepCloneNewData.avatarURL = "";
-          } else {
-            deepCloneNewData.avatar = data.url;
-            deepCloneNewData.avatarURL = URL.createObjectURL(image);
-          }
+
+          deepCloneNewData.avatar = data.url;
+          deepCloneNewData.avatarURL = URL.createObjectURL(image);
         } catch (error) {
           console.error(error);
         }
+      } else {
+        deepCloneNewData.avatar = "";
+        deepCloneNewData.avatarURL = "";
       }
       //UPLOAD INFORMATION
       try {
