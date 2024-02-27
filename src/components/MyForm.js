@@ -38,9 +38,11 @@ const MyForm = () => {
   const handleBlur = (e) => {
     const { name, value } = e.target;
     const errorMessage = validateField(name, value);
-    setErrors({
-      ...errors,
-      [name]: errorMessage,
+    setErrors(() => {
+      return {
+        ...errors,
+        [name]: errorMessage,
+      };
     });
   };
   const onChangeInput = (e) => {
@@ -52,9 +54,11 @@ const MyForm = () => {
       };
     });
     const errorMessage = validateField(name, value);
-    setErrors({
-      ...errors,
-      [name]: errorMessage,
+    setErrors(() => {
+      return {
+        ...errors,
+        [name]: errorMessage,
+      };
     });
   };
 
