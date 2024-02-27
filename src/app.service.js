@@ -1,5 +1,5 @@
 /**
- * `uploadImage` lấy dữ liệu từ apiUrl,image đưa vào function
+ * `uploadImage` Upload ảnh
  * @async
  * @param { string} apiUrl - link url để lấy dữ liệu
  * @param {File} image - ảnh được tải lên
@@ -24,11 +24,12 @@ const uploadImage = async (apiUrl, image) => {
 };
 
 /**
- * `addCustomer` lấy dữ liệu từ apiUrl,image đưa vào function
+ * `addCustomer` Upload thông tin người dùng
  * @async
  * @param { string} customerApiUrl - link url để lấy dữ liệu
  * @param {string} token - Token được sử dụng để xác thực yêu cầu
  * @param {Object} data - Dữ liệu người dùng cần được thêm vào API
+ * @returns {Promise<string>} - dữ liệu được trả về từ url
  * @see https://g.lifetek.vn:220/api/customers/
  */
 const addCustomer = async (customerApiUrl, token, data) => {
@@ -49,8 +50,9 @@ const addCustomer = async (customerApiUrl, token, data) => {
   }
 };
 /**
- *
+ * Hàm deepClone đối tượng
  * @param {object} obj - object cần deepClone
+ * @returns {object} obj - đối tượng được deepClone
  */
 function deepClone(obj) {
   return JSON.parse(JSON.stringify(obj));

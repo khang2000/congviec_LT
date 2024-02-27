@@ -61,7 +61,7 @@ const validateField = (fieldName, value) => {
 };
 
 /**
- * Validate a form based on the provided input values.
+ * hàm xác thực Form
  * @param {Object} inpVal - Các giá trị đầu vào cần được xác thực
  * @returns {Object} - trả về một object chứa lỗi xác thực cho từng trường
  */
